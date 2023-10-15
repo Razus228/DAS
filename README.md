@@ -2,6 +2,9 @@
 
 To initiate this repo on your local device, follow the next steps:
 
+
+Create a new folder on your end.
+Open the folder in the terminal and type the code below:
 ```
 git init
 git remote add origin https://github.com/Razus228/DAS.git
