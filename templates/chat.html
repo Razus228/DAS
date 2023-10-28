@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Application</title>
+</head>
+<body>
+    <h1>Chat Application</h1>
+    <div id="chat-messages"></div>
+    <input type="text" id="message" placeholder="Type your message">
+    <button id="send">Send</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function refreshMessages() {
+            $.get('/get_messages', function(data) {
+                $('#chat-messages').empty();
+                for (var i = 0; i < data.length; i++) {
+                    $('#chat-messages').append('<p>' + data[i] + '</p>');
+                }
+            });
+        }
+
+        $('#send').click(function() {
+            var message = $('#message').val();
+            $.post('/send_message', { message: message }, function() {
+                refreshMessages();
+            });
+        });
+
+        setInterval(refreshMessages, 1000);
+    </script>
+</body>
+</html>
